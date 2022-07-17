@@ -76,7 +76,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wpartial-fields -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
-    , bookhound >=0.1.10.0
+    , bookhound >=0.1.11.0
     , containers >=0.6 && <1
     , text >=2.0 && <3
     , time >=1.9 && <2

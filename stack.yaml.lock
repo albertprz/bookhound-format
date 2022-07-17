@@ -5,12 +5,12 @@
 
 packages:
 - completed:
-    hackage: bookhound-0.1.10.0@sha256:ac23d88b8f37b166a4d6fb0e5587d510d2a575d8aa2d3fcfec0252d485e32c5b,2632
+    hackage: bookhound-0.1.11.0@sha256:1d06bd86cef9acfc56e46722833df2b5605c1ff65b5d9256b0ef776e90c7a54e,2241
     pantry-tree:
-      size: 1896
-      sha256: a5d39a6146159044e7eed81f40becacd7cef5f3a24668efd93fd0a3bc310901e
+      size: 1025
+      sha256: 937882eeb2c833e3f62dcff5df552b010e370733da78a42ed014dbd51310a4fa
   original:
-    hackage: bookhound-0.1.10.0
+    hackage: bookhound-0.1.11.0
 - completed:
     hackage: text-2.0@sha256:86e64bc76fefb8f0f6529d28ddf24b2a29d43591a8b9b7c7094f481a0db2fb7d,7788
     pantry-tree:
