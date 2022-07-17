@@ -1,0 +1,86 @@
+name:                bookhound-format
+version:             0.1.0.0
+github:              "albertprz/bookhound-format"
+license:             LGPL
+author:              "Alberto Perez Lopez"
+maintainer:          "albertoperez1994@gmail.com"
+copyright:           "2022 Alberto Perez Lopez"
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+synopsis:            Usual data format Parsers
+category:            Parsers
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description: Please see the README on GitHub at <https://github.com/albertprz/bookhound-format#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers >= 0.6 && < 1
+- time >= 1.9 && < 2
+
+- bookhound >= 0.1.11.0
+- text >= 2.0 && < 3
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wpartial-fields
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+
+default-extensions:
+# Syntax
+- LambdaCase
+- MultiWayIf
+- TupleSections
+- PostfixOperators
+
+# Types
+- RankNTypes
+- ExplicitForAll
+- ScopedTypeVariables
+- LiberalTypeSynonyms
+- InstanceSigs
+- FunctionalDependencies
+
+# Records
+- DuplicateRecordFields
+- NamedFieldPuns
+- RecordWildCards
+# - NoFieldSelectors
+# - OverloadedRecordDot
+
+# Type Classes
+- ConstrainedClassMethods
+- MultiParamTypeClasses
+- FlexibleContexts
+- FlexibleInstances
+
+# Convenience
+- ApplicativeDo
+- ParallelListComp
+- MonadComprehensions
+
+# Type Level Programming
+- GADTs
+- TypeFamilies
+- TypeFamilyDependencies
+- DataKinds
+- PolyKinds
+
+# Deriving
+- DeriveFunctor
+- DeriveFoldable
+- DeriveTraversable
+- DeriveGeneric
+- GeneralizedNewtypeDeriving
+
+library:
+  source-dirs: src

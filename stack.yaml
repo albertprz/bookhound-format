@@ -1,0 +1,9 @@
+packages:
+- .
+resolver:
+  compiler: ghc-9.2.1
+
+extra-deps:
+
+  - bookhound-0.1.11.0
+  - text-2.0
