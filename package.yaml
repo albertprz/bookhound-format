@@ -10,7 +10,7 @@ extra-source-files:
 - README.md
 
 # Metadata used when publishing your package
-synopsis:            Usual data format Parsers
+synopsis:            Parsers for usual data formats
 category:            Parsers
 
 # To avoid duplicated efforts in documentation and dealing with the

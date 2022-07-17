@@ -6,7 +6,7 @@ cabal-version: 1.12
 
 name:           bookhound-format
 version:        0.1.0.0
-synopsis:       Usual data format Parsers
+synopsis:       Parsers for usual data formats
 description:    Please see the README on GitHub at <https://github.com/albertprz/bookhound-format#readme>
 category:       Parsers
 homepage:       https://github.com/albertprz/bookhound-format#readme
