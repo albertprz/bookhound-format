@@ -7,7 +7,7 @@ import Bookhound.Parsers.Char      (dot)
 import Bookhound.Parsers.Number    (unsignedInt)
 import Bookhound.Parsers.String    (withinSquareBrackets)
 
-import Bookhound.Format.SyntaxTrees.Json  (JsExpression (..))
+import Bookhound.Format.SyntaxTrees.Json  (JsonExpression (..))
 import Bookhound.Format.SyntaxTrees.Toml  (TomlExpression (..))
 import Bookhound.Format.SyntaxTrees.Yaml  (YamlExpression (..))
 
@@ -48,7 +48,7 @@ class Finder a where
 
 
 
-instance Finder JsExpression where
+instance Finder JsonExpression where
   toList = \case
     nil@JsNull       -> [("", nil)]
     n@(JsNumber _)   -> [("", n)]

@@ -3,7 +3,7 @@ module Bookhound.Format.Parsers.Toml (toml, nil, integer, float, bool, string,
 
 import Bookhound.Parser              (Parser, withError)
 import Bookhound.ParserCombinators   (IsMatch (..), maybeWithin, within, (<#>),
-                                      (<|>), (>>>), (|*), (|+), (|?))
+                                      (<|>), (->>-), (|*), (|+), (|?))
 import Bookhound.Parsers.Char        (dash, digit, dot, doubleQuote, equal,
                                       hashTag, letter, newLine, quote,
                                       spaceOrTab, underscore, whiteSpace)
@@ -80,7 +80,7 @@ array = withError "Toml Array"
 
 
 key :: Parser String
-key = keyParser >>> ((dot >>> keyParser) |*)
+key = keyParser ->>- ((dot ->>- keyParser) |*)
   where
     keyParser = maybeWithin spacesOrTabs $ freeText      <|>
                 withinDoubleQuotes (inverse doubleQuote |*) <|>

@@ -5,7 +5,7 @@ module Bookhound.Format.Parsers.Yaml (yaml, nil, integer, float, bool, string,
 import Bookhound.Parser              (Parser, andThen, check, exactly,
                                       withError)
 import Bookhound.ParserCombinators   (IsMatch (..), maybeWithin, (<#>), (<|>),
-                                      (>>>), (|*), (|+), (|++), (|?))
+                                      (->>-), (|*), (|+), (|++), (|?))
 import Bookhound.Parsers.Char        (char, colon, dash, dot, doubleQuote,
                                       hashTag, newLine, question, quote, space,
                                       whiteSpace)
@@ -146,7 +146,7 @@ text indent = withinDoubleQuotes (quotedParser (inverse doubleQuote |*))        
 
     quotedParser parser = mconcat <$> ((snd <$> foldingLineParser parser) |*)
 
-    plainTextParser styleParser = allowedStart >>> allowedString >>>
+    plainTextParser styleParser = allowedStart ->>- allowedString ->>-
                                   (indentationCheck (styleParser allowedString) indent |*)
 
     foldingLineParser parser = do sep <- ("\n" <$ newLine <* blankLines) <|> (" " <$ newLine)
@@ -174,7 +174,7 @@ indentationCheck parser indent = ((snd <$> check "indentation"
 
 normalize :: Parser String
 normalize = withError "Normalize Yaml"
-  $ (parserActions >>> normalize) <|> (char |*)
+  $ (parserActions ->>- normalize) <|> (char |*)
   where
 
     parserActions = spreadDashes     <|>

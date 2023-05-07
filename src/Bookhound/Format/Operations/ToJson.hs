@@ -5,7 +5,7 @@ import Bookhound.ParserCombinators (IsMatch (..), maybeWithin, (<|>), (|*))
 import Bookhound.Parsers.String    (spacing)
 
 import Bookhound.Format.Parsers.Json      (json)
-import Bookhound.Format.SyntaxTrees.Json  (JsExpression (..))
+import Bookhound.Format.SyntaxTrees.Json  (JsonExpression (..))
 import Bookhound.Format.SyntaxTrees.Toml  (TomlExpression (..))
 import Bookhound.Format.SyntaxTrees.Xml   (XmlExpression (..))
 import Bookhound.Format.SyntaxTrees.Yaml  (YamlExpression (..))
@@ -18,10 +18,10 @@ import qualified Data.Map as Map
 
 
 class ToJson a where
-  toJson :: a -> JsExpression
+  toJson :: a -> JsonExpression
 
 
-instance {-# OVERLAPPABLE #-} ToJson JsExpression where
+instance {-# OVERLAPPABLE #-} ToJson JsonExpression where
   toJson = id
 
 instance ToJson XmlExpression where

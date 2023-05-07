@@ -7,7 +7,7 @@ import Bookhound.Parsers.Char      (doubleQuote)
 import Bookhound.Parsers.String    (spacing, withinAngleBrackets,
                                     withinDoubleQuotes)
 
-import Bookhound.Format.SyntaxTrees.Xml   (XmlExpression (..), literalExpression)
+import Bookhound.Format.SyntaxTrees.Xml (XmlExpression (..), literalExpression)
 
 import           Data.Map (Map)
 import qualified Data.Map as Map
@@ -15,7 +15,7 @@ import qualified Data.Map as Map
 
 xml :: Parser XmlExpression
 xml = maybeWithin  ((header <|> comment) |+)
-    $ maybeWithin spacing $ branchExpr <|> leafExpr
+    $ maybeWithin spacing (branchExpr <|> leafExpr)
 
 
 

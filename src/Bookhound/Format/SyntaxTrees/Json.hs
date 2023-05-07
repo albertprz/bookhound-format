@@ -1,24 +1,24 @@
-module Bookhound.Format.SyntaxTrees.Json (JsExpression(..)) where
+module Bookhound.Format.SyntaxTrees.Json (JsonExpression(..)) where
 
-import Bookhound.Internal.Foldable (stringify)
-import Bookhound.Internal.Map      (showMap)
+import Bookhound.Utils.Foldable (stringify)
+import Bookhound.Utils.Map      (showMap)
 
 import Data.Char (toLower)
 import Data.Map  (Map)
 
 
 
-data JsExpression
+data JsonExpression
   = JsNumber Double
   | JsBool Bool
   | JsString String
-  | JsArray [JsExpression]
-  | JsObject (Map String JsExpression)
+  | JsArray [JsonExpression]
+  | JsObject (Map String JsonExpression)
   | JsNull
   deriving (Eq, Ord)
 
 
-instance Show JsExpression where
+instance Show JsonExpression where
   show = \case
     JsNull       -> "null"
     JsNumber n   -> show n

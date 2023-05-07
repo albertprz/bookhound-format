@@ -1,5 +1,5 @@
 name:                bookhound-format
-version:             0.1.0.0
+version:             0.1.1.0
 github:              "albertprz/bookhound-format"
 license:             LGPL
 author:              "Alberto Perez Lopez"
@@ -23,7 +23,7 @@ dependencies:
 - containers >= 0.6 && < 1
 - time >= 1.9 && < 2
 
-- bookhound >= 0.1.11.0
+- bookhound >= 0.1.13.0
 - text >= 2.0 && < 3
 
 ghc-options:

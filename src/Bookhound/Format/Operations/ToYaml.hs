@@ -3,7 +3,7 @@
 module Bookhound.Format.Operations.ToYaml (ToYaml(..)) where
 
 import Bookhound.Format.Operations.ToJson (ToJson (..))
-import Bookhound.Format.SyntaxTrees.Json  (JsExpression (..))
+import Bookhound.Format.SyntaxTrees.Json  (JsonExpression (..))
 import Bookhound.Format.SyntaxTrees.Yaml  (CollectionType (..), YamlExpression (..))
 
 import Bookhound.Parser            (runParser)
@@ -22,7 +22,7 @@ instance {-# OVERLAPPABLE #-} ToJson a => ToYaml a where
 instance ToYaml YamlExpression where
   toYaml = id
 
-instance ToYaml JsExpression where
+instance ToYaml JsonExpression where
 
   toYaml = \case
     JsNull       -> YamlNull

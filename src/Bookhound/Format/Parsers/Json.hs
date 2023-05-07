@@ -7,52 +7,50 @@ import Bookhound.Parsers.Collections (listOf, mapOf)
 import Bookhound.Parsers.Number      (double)
 import Bookhound.Parsers.String      (spacing, withinDoubleQuotes)
 
-import Bookhound.Format.SyntaxTrees.Json    (JsExpression (..))
+import Bookhound.Format.SyntaxTrees.Json (JsonExpression (..))
 
 
-json :: Parser JsExpression
+json :: Parser JsonExpression
 json = maybeWithin spacing jsValue
   where
     jsValue = element <|> container
 
 
-nil :: Parser JsExpression
-nil = withError "Json Null"
-  $ JsNull <$ is "null"
+nil :: Parser JsonExpression
+nil = withError "Json Null" $
+  JsNull <$ is "null"
 
-number :: Parser JsExpression
-number = withError "Json Number"
-  $ JsNumber <$> double
-
-
-bool :: Parser JsExpression
-bool = withError "Json Bool"
-  $ JsBool <$> (True  <$ is "true" <|>
-                False <$ is "false")
+number :: Parser JsonExpression
+number = withError "Json Number" $
+  JsNumber <$> double
 
 
-string :: Parser JsExpression
-string = withError "Json String"
-  $ JsString <$> text
+bool :: Parser JsonExpression
+bool = withError "Json Bool" $
+  JsBool <$> (True  <$ is "true" <|>
+              False <$ is "false")
 
 
-array :: Parser JsExpression
-array = withError "Json Array"
-  $ JsArray <$> listOf json
+string :: Parser JsonExpression
+string = withError "Json String" $
+  JsString <$> text
 
 
-object :: Parser JsExpression
-object = withError "Json Object"
-  $ JsObject <$> mapOf colon text json
+array :: Parser JsonExpression
+array = withError "Json Array" $
+  JsArray <$> listOf json
 
 
+object :: Parser JsonExpression
+object = withError "Json Object" $
+  JsObject <$> mapOf colon text json
 
-element :: Parser JsExpression
+
+element :: Parser JsonExpression
 element = number <|> bool <|> nil <|> string
 
-container :: Parser JsExpression
+container :: Parser JsonExpression
 container = array <|> object
-
 
 
 text :: Parser String

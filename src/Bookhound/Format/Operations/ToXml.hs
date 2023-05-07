@@ -3,7 +3,7 @@
 module Bookhound.Format.Operations.ToXml (ToXml(..)) where
 
 import Bookhound.Format.Operations.ToJson (ToJson (..))
-import Bookhound.Format.SyntaxTrees.Json  (JsExpression (..))
+import Bookhound.Format.SyntaxTrees.Json  (JsonExpression (..))
 import Bookhound.Format.SyntaxTrees.Xml   (XmlExpression (..), literalExpression)
 
 import           Data.Char (toLower)
@@ -21,7 +21,7 @@ instance ToXml XmlExpression where
   toXml = id
 
 
-instance ToXml JsExpression where
+instance ToXml JsonExpression where
 
   toXml = \case
     JsNull       -> literalExpression "null"
