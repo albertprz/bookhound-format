@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           bookhound-format
-version:        0.1.1.0
+version:        0.1.2.0
 synopsis:       Parsers for usual data formats
 description:    Please see the README on GitHub at <https://github.com/albertprz/bookhound-format#readme>
 category:       Parsers
@@ -76,7 +76,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wpartial-fields -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
-    , bookhound >=0.1.13.0
+    , bookhound >=0.1.24.0 && <0.2
     , containers >=0.6 && <1
     , text >=2.0 && <3
     , time >=1.9 && <2

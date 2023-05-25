@@ -4,11 +4,11 @@ import Bookhound.Parser            (runParser)
 import Bookhound.ParserCombinators (IsMatch (..), maybeWithin, (<|>), (|*))
 import Bookhound.Parsers.String    (spacing)
 
-import Bookhound.Format.Parsers.Json      (json)
-import Bookhound.Format.SyntaxTrees.Json  (JsonExpression (..))
-import Bookhound.Format.SyntaxTrees.Toml  (TomlExpression (..))
-import Bookhound.Format.SyntaxTrees.Xml   (XmlExpression (..))
-import Bookhound.Format.SyntaxTrees.Yaml  (YamlExpression (..))
+import Bookhound.Format.Parsers.Json     (json)
+import Bookhound.Format.SyntaxTrees.Json (JsonExpression (..))
+import Bookhound.Format.SyntaxTrees.Toml (TomlExpression (..))
+import Bookhound.Format.SyntaxTrees.Xml  (XmlExpression (..))
+import Bookhound.Format.SyntaxTrees.Yaml (YamlExpression (..))
 
 import Data.Either (fromRight)
 import Data.Text   (pack)
@@ -30,13 +30,12 @@ instance ToJson XmlExpression where
     | tag == "literal"  = fromRight JsNull . runParser literalParser .
                               pack . head . elems $ fields
     | tag == "array"    = JsArray $ childExprToJson <$> exprs
-    | tag == "object"   = JsObject . Map.fromList $ (\x -> (tagName x, childExprToJson x)) <$>
-                                        exprs
-    | otherwise          = JsNull   where
-
-        literalParser = json <|> (JsString <$> maybeWithin spacing (isNot '<' |*))
-
-        childExprToJson = toJson . head . (expressions)
+    | tag == "object"   = JsObject . Map.fromList $
+      (\x -> (tagName x, childExprToJson x)) <$> exprs
+    | otherwise          = JsNull
+    where
+      literalParser = json <|> (JsString <$> maybeWithin spacing (isNot '<' |*))
+      childExprToJson = toJson . head . expressions
 
 
 instance ToJson YamlExpression where

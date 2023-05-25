@@ -62,6 +62,5 @@ comment = maybeWithin spacing $
   is "<!--" *> (isNot '-' |*) <* is "-->"
 
 
-
 text :: Parser String
 text = (noneOf ['/', '>', ' ', '='] |+)

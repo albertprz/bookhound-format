@@ -7,9 +7,9 @@ import Bookhound.Parsers.Char      (dot)
 import Bookhound.Parsers.Number    (unsignedInt)
 import Bookhound.Parsers.String    (withinSquareBrackets)
 
-import Bookhound.Format.SyntaxTrees.Json  (JsonExpression (..))
-import Bookhound.Format.SyntaxTrees.Toml  (TomlExpression (..))
-import Bookhound.Format.SyntaxTrees.Yaml  (YamlExpression (..))
+import Bookhound.Format.SyntaxTrees.Json (JsonExpression (..))
+import Bookhound.Format.SyntaxTrees.Toml (TomlExpression (..))
+import Bookhound.Format.SyntaxTrees.Yaml (YamlExpression (..))
 
 
 import Data.Either (fromRight)
@@ -33,18 +33,18 @@ class Finder a where
   find f = listToMaybe . findAll f
 
   findByKeys []       expr = Just expr
-  findByKeys (x : xs) expr = findByKey x expr >>= findByKeys xs  where
+  findByKeys (x : xs) expr = findByKey x expr >>= findByKeys xs
+    where
+      findByKey key = find (\(str, _) -> str == key)
 
-    findByKey key = find (\(str, _) -> str == key)
+  findByPath path = findByKeys pathSeq
+    where
+      pathSeq = fromRight [] $ runParser parsePath $ pack path
+      parsePath = is '$' *> ((index <|> key) |*)
 
-  findByPath path = findByKeys pathSeq where
-
-    pathSeq = fromRight [] $ runParser parsePath $ pack path
-    parsePath = is '$' *> ((index <|> key) |*)
-
-    index = show <$> withinSquareBrackets unsignedInt
-    key   = dot *> word
-    word  = (noneOf ['.', '['] |*)
+      index = show <$> withinSquareBrackets unsignedInt
+      key   = dot *> word
+      word  = (noneOf ['.', '['] |*)
 
 
 
